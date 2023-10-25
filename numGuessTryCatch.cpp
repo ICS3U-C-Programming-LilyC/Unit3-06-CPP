@@ -8,30 +8,36 @@
 // if they got it right or wrong.
 // My program will also catch any
 //invalid inputs with a Try Catch.
-#include<iostream>
-#include<string>
+#include <cstdlib>
+#include <iostream>
 
 int main() {
     // Declaring variables for user guess
     // as a string and the random number 
     // that will be generated.
     std::string userGuessAsString;
-    int randomInteger;
+    int randomInteger, userGuessAsInteger;
+
+    // Initializing the random generator.
+    srand((unsigned)time(NULL));
+
+    // Generating a random number between 0 and 9.
+    randomInteger = 0 + rand() % 9;
 
     // Getting user input for their integer guess.
     std::cout << "Enter a integer between 0 and 9: ";
     std::cin >> userGuessAsString;
 
-// Initiating try catch.
+    // Initiating try catch.
     try { 
-        int userGuessAsInteger = std::stoi(userGuessAsString);
+        userGuessAsInteger = std::stoi(userGuessAsString);
         if (userGuessAsInteger == randomInteger) {
-            std::cout << "You guessed correctly! The number was " << userGuessAsInteger;
+            std::cout << "You guessed correctly! The number was " << randomInteger;
         } else {
-            std::cout << "You guessed incorrectly.The correct number was " << userGuessAsInteger;
+            std::cout << "You guessed incorrectly.The correct number was " << randomInteger;
             }
     } catch (std::invalid_argument) {
         std::cout
-            << userGuessAsInteger << "is not a valid integer.";
+            << userGuessAsString << " is not a valid integer.";
     }
 }
